@@ -296,6 +296,11 @@ def train(dataset: ClipCocoDataset, model: ClipCaptionModel, args,
     epochs = args.epochs
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
+    # ---- Ben add pre-trained -----
+    # weights_path = 'pretrained_model/transformer_weights.pt'
+    weights_path = 'pretrained_model/coco_weights.pt'
+    model.load_state_dict(torch.load(weights_path, map_location=torch.device('cpu')))
+    # ---- End Ben add ----
     model = model.to(device)
     model.train()
     optimizer = AdamW(model.parameters(), lr=lr)
