@@ -291,16 +291,18 @@ def load_model(config_path: str, epoch_or_latest: Union[str, int] = '_latest'):
 def train(dataset: ClipCocoDataset, model: ClipCaptionModel, args,
           lr: float = 2e-5, warmup_steps: int = 5000, output_dir: str = ".", output_prefix: str = ""):
 
+    # ---- Ben added paths to pre-trained weights ----
+    # weights_path = 'pretrained_model/transformer_weights.pt'
+    weights_path = 'pretrained_model/coco_weights.pt'
+    # ---- End ----
+    
     device = torch.device('cuda:0')
     batch_size = args.bs
     epochs = args.epochs
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-    # ---- Ben add pre-trained -----
-    # weights_path = 'pretrained_model/transformer_weights.pt'
-    weights_path = 'pretrained_model/coco_weights.pt'
+
     model.load_state_dict(torch.load(weights_path, map_location=torch.device('cpu')))
-    # ---- End Ben add ----
     model = model.to(device)
     model.train()
     optimizer = AdamW(model.parameters(), lr=lr)
