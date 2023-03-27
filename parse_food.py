@@ -3,41 +3,33 @@ import skimage.io as io
 import clip
 from PIL import Image
 import pickle
-import json
-import os
 from tqdm import tqdm
+import numpy as np
 import argparse
 import pandas as pd
+from sklearn.model_selection import train_test_split
 
-caption_path = 'data/food/archive/'
-df = pd.read_csv(caption_path + 'Captions.csv')
-df = df.astype({'Captions':'string'}).dropna(subset=['Captions'])
-df = df.drop(columns=['Unnamed: 0'])
-df = df[df['Captions'].map(len) < 240]
-df = df.rename(columns={'Index':'image_id', 'Captions':'caption'})
+def main(clip_model_type: str, data_path: str, token_limit: int, test_size: int):
+    #preprocessing
+    df = pd.read_csv(data_path + 'Captions.csv')
+    df.iloc[0] = df.iloc[0].astype(np.int64)
+    df.iloc[1] = df.iloc[1].astype(str)
+    df = df.rename(columns={df.columns[0]:'image_id', df.columns[1]:'caption'})
+    df = df[df['caption'].map(len) < token_limit]
+    _, X_test = train_test_split(df, test_size=test_size, random_state=42)
+    data = X_test
 
-data = df.copy()
-# exp_path = caption_path + 'train_caption.json'
-# df.to_json(exp_path, orient='table')
-
-def main(clip_model_type: str):
     device = torch.device('cuda:0')
     clip_model_name = clip_model_type.replace('/', '_')
-    out_path = f"./data/food/{clip_model_name}_RN_train.pkl"
+    out_path = f"./{clip_model_name}_RN_train.pkl"
     clip_model, preprocess = clip.load(clip_model_type, device=device, jit=False)
-    # with open('./data/coco/annotations/train_caption.json', 'r') as f:
-    # with open('./data/food/archive/train_caption.json', 'r') as f:
-      #  data = json.load(f)
-    print("%0d captions loaded from json " % len(data))
     all_embeddings = []
     all_captions = []
     for i in tqdm(range(len(data))):
         print(data)
         d = data.iloc[i]
         img_id = d['image_id']
-        filename = f"./data/food/archive/dataset/{int(img_id)}.jpg"
-        # if not os.path.isfile(filename):
-          #  filename = f"./data/coco/val2014/COCO_val2014_{int(img_id):012d}.jpg"
+        filename = f"./dataset/{int(img_id)}.jpg"
         image = io.imread(filename)
         image = preprocess(Image.fromarray(image)).unsqueeze(0).to(device)
         with torch.no_grad():
@@ -60,5 +52,8 @@ def main(clip_model_type: str):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--clip_model_type', default="ViT-B/32", choices=('RN50', 'RN101', 'RN50x4', 'ViT-B/32'))
+    parser.add_argument('--data_path', default='./data')
+    parser.add_argument('--token_limit', type=int, default=240)
+    parser.add_argument('--test_size', type=int, default=0.3)
     args = parser.parse_args()
-    exit(main(args.clip_model_type))
+    exit(main(args.clip_model_type, args.data_path, args.token_limit, args.test_size))
