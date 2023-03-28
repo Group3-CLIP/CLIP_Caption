@@ -10,7 +10,7 @@ If you are unfamiliar with either resource, please visit the links above first. 
 
 
 
-## COCO Examples (Replace with our own finetuned images and captions)
+## Inference Examples
 
 
 
