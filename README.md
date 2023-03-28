@@ -52,7 +52,7 @@ python train.py --only_prefix --data ./RN50x4_RN_train.pkl --out_dir ./model_che
 
 ## Model Architecture
 
-![Model](Images/modelarchitecture.jpg)
+![Model](Images/modelarchitecture.png)
 
 Our best inference results were obtained by only training the ResNet based transformer while keeping CLIP and GPT2 frozen. 
 
