@@ -21,6 +21,8 @@ If you are unfamiliar with either resource, please visit the links above first. 
 | ![Inf2](Images/inf2.jpg)      | Pastries and muffins sitting on a table next to each other on a blue background.      |   a close up of muffins on a napkin on a table |
 | ![Inf3](Images/inf3.jpg)| A bowl of pasta with noodles and cheese on a wooden table.     |    A bowl of spaghetti and a fork on a table. |
 | ![Inf4](Images/inf4.jpg) | A bowl of soup with vegetables and noodles on a plate.    |    A bowl of soup, a bowl of vegetables, and a bowl of rice.|
+| ![scones](Images/scone.jpg) | A plate topped with cheesecake and strawberries on a table.    |    A plate with a strawberry and cream sandwich and a cup of coffee.|
+| ![scones2](Images/scone2.jpg) | A plate of cookies and muffins on a table next to a cup of coffee.    |    A table topped with a plate of cookies and muffins..|
 
 ## Prerequisites for Fine-tuning
 
