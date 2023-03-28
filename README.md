@@ -41,7 +41,7 @@ python parse_food.py --clip_model_type RN50x4 --data_path <captions dir> --token
 ```
 Train with fine-tuning of GPT2:
 ```
-python train.py --data ./data/ViT-B_32_train.pkl --out_dir ./coco_train/
+python train.py --data ./data/ViT-B_32_train.pkl --out_dir ./food_train/
 ```
 
 Train only transformer mapping network:
@@ -58,7 +58,7 @@ Our best inference results were obtained by only training the ResNet based trans
 
 Our final checkpoint was trained on a subset `test_size = 0.3` of the [food dataset](https://www.kaggle.com/datasets/zeynaloy/food-related-pictures-dataset-with-captions) from Kaggle.
 
-An important parameter to note at inference is the `Temperature`. -- Varying `Temperature` can lead to significantly different results.
+An important parameter to note at inference is the `Temperature`. Temperature scales the values of the logits and hence changes the probability distribution of the words generated in the captions. -- Varying `Temperature` can lead to significantly different results.
 
 ![Inf1](Images/inf1.jpg)
 
