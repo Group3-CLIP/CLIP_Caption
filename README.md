@@ -30,8 +30,7 @@ git clone https://github.com/rmokady/CLIP_prefix_caption && cd CLIP_prefix_capti
 conda env create -f environment.yml
 conda activate clip_prefix_caption
 ```
-
-## Download the [pretrained weights](https://drive.google.com/file/d/1IdaBtMSvtyzF0ByVaBHtvM0JYSXRExRX/view?usp=sharing) by Mokady et al. (2021) for the COCO dataset. The path to the weights will be required later on.
+Download the [pretrained weights](https://drive.google.com/file/d/1IdaBtMSvtyzF0ByVaBHtvM0JYSXRExRX/view?usp=sharing) by Mokady et al. (2021) for the COCO dataset. The path to the weights will be required later on.
 
 ## Fine-tuning on your own data
 
