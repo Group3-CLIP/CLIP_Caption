@@ -49,3 +49,20 @@ Train only transformer mapping network:
 python train.py --only_prefix --data ./RN50x4_RN_train.pkl --out_dir ./model_checkpoints --mapping_type transformer  --num_layers 8 --prefix_length 40 --prefix_length_clip 40 --is_rn
 ```
 
+
+## Model Architecture
+
+![Model](Images/modelarchitecture.jpg)
+
+Our best inference results were obtained by only training the ResNet based transformer while keeping CLIP and GPT2 frozen. 
+
+Our final checkpoint was trained on a subset `test_size = 0.3` of the [food dataset](https://www.kaggle.com/datasets/zeynaloy/food-related-pictures-dataset-with-captions) from Kaggle.
+
+An important parameter to note at inference is the `Temperature`. -- Varying `Temperature` can lead to significantly different results.
+
+![Inf1](Images/inf1.jpg)
+
+| `Temperature`= 1 | `Temperature`= 0.1|
+| ---|:---|
+| A healthy diet of fruits, vegetables, nuts, seeds, nuts, seeds, and whole grains.| A healthy eating diet with healthy foods and healthy fats. |
+
