@@ -24,6 +24,8 @@ If you are unfamiliar with either resource, please visit the links above first. 
 | ![scones](Images/scone.jpg) | A plate topped with cheesecake and strawberries on a table.    |    A plate with a strawberry and cream sandwich and a cup of coffee.|
 | ![scones2](Images/scone2.jpg) | A plate of cookies and muffins on a table next to a cup of coffee.    |    A table topped with a plate of cookies and muffins..|
 
+For convenience, we have also included a [Colab notebook](https://colab.research.google.com/drive/15WNs3DqS03eWdo6mE521yZfhX8xl8lmd?usp=sharing) that can be used to run your own inferences.
+
 ## Prerequisites for Fine-tuning
 
 1. Clone, create environment and install dependencies:  
