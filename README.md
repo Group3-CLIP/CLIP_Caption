@@ -4,7 +4,7 @@
 
 ## Description  
 
-In this article, we are utilising ["ClipCap: CLIP Prefix for Image Captioning"](https://github.com/rmokady/CLIP_prefix_caption) that is based on the [CLIP](https://github.com/openai/CLIP) model to finetune for our food-based dataset.
+In this article, we are fine-tuning ["ClipCap: CLIP Prefix for Image Captioning"](https://github.com/rmokady/CLIP_prefix_caption) that is based on [CLIP](https://github.com/openai/CLIP) to provide captions for our food-based dataset.
 
 If you are unfamiliar with either resource, please visit the links above first. Our code is largely an extension of the former and we take no credit for any of the authors' code.
 
@@ -31,7 +31,7 @@ conda env create -f environment.yml
 conda activate clip_prefix_caption
 ```
 
-
+## Download the [pretrained weights](https://drive.google.com/file/d/1IdaBtMSvtyzF0ByVaBHtvM0JYSXRExRX/view?usp=sharing) by Mokady et al. (2021) for the COCO dataset. The path to the weights will be required later on.
 
 ## Fine-tuning on your own data
 
@@ -41,12 +41,12 @@ python parse_food.py --clip_model_type RN50x4 --data_path <captions dir> --token
 ```
 Train with fine-tuning of GPT2:
 ```
-python train.py --data ./data/ViT-B_32_train.pkl --out_dir ./food_train/
+python train.py --data ./data/ViT-B_32_train.pkl --out_dir ./food_train/ --weights_dir ./pretrained_model
 ```
 
 Train only transformer mapping network:
 ```
-python train.py --only_prefix --data ./RN50x4_RN_train.pkl --out_dir ./model_checkpoints --mapping_type transformer  --num_layers 8 --prefix_length 40 --prefix_length_clip 40 --is_rn
+python train.py --only_prefix --data ./RN50x4_RN_train.pkl --out_dir ./model_checkpoints --mapping_type transformer  --num_layers 8 --prefix_length 40 --prefix_length_clip 40 --is_rn --weights_dir ./pretrained_model
 ```
 
 
