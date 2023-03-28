@@ -24,13 +24,13 @@ If you are unfamiliar with either resource, please visit the links above first. 
 
 ## Prerequisites for Fine-tuning
 
-Clone, create environment and install dependencies:  
+1. Clone, create environment and install dependencies:  
 ```
 git clone https://github.com/rmokady/CLIP_prefix_caption && cd CLIP_prefix_caption
 conda env create -f environment.yml
 conda activate clip_prefix_caption
 ```
-Download the [pretrained weights](https://drive.google.com/file/d/1IdaBtMSvtyzF0ByVaBHtvM0JYSXRExRX/view?usp=sharing) by Mokady et al. (2021) for the COCO dataset. The path to the weights will be required later on.
+2. Download the [pretrained weights](https://drive.google.com/file/d/1IdaBtMSvtyzF0ByVaBHtvM0JYSXRExRX/view?usp=sharing) by Mokady et al. (2021) for the COCO dataset. The path to the weights will be required later on.
 
 ## Fine-tuning on your own data
 
@@ -38,12 +38,12 @@ Extract CLIP features using `parse_food.py` (output is `./RN50x4_RN_train.pkl`):
 ```
 python parse_food.py --clip_model_type RN50x4 --data_path <captions dir> --token_limit <max token length> --test_size <% of dataset>
 ```
-Train with fine-tuning of GPT2:
+Train with fine-tuning of GPT2 included:
 ```
 python train.py --data ./data/ViT-B_32_train.pkl --out_dir ./food_train/ --weights_dir ./pretrained_model
 ```
 
-Train only transformer mapping network:
+Train only the transformer mapping network (leaving GPT2 untouched):
 ```
 python train.py --only_prefix --data ./RN50x4_RN_train.pkl --out_dir ./model_checkpoints --mapping_type transformer  --num_layers 8 --prefix_length 40 --prefix_length_clip 40 --is_rn --weights_dir ./pretrained_model
 ```
