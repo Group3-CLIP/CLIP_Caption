@@ -59,7 +59,7 @@ Our best inference results were obtained by only training the ResNet based trans
 
 Our final checkpoint was trained on a subset `test_size = 0.3` of the [food dataset](https://www.kaggle.com/datasets/zeynaloy/food-related-pictures-dataset-with-captions) from Kaggle.
 
-An important parameter to note at inference is the `Temperature`. Temperature scales the values of the logits from GPT2 before they enter the softmax and hence changes the probability distribution of the words generated in the captions. -- Varying `Temperature` can lead to significantly different results with lower temperatures typically leading to more deterministic outcomes.
+An important parameter to note at inference is the `Temperature`. Temperature scales the values of the logits from GPT2 before they enter the softmax and hence changes the probability distribution of the words generated in the captions. -- Varying `Temperature` can lead to significantly different results with lower temperatures typically associated with more deterministic outcomes.
 
 ![Inf1](Images/inf1.jpg)
 
