@@ -40,7 +40,7 @@ conda activate clip_prefix_caption
 
 Extract CLIP features using `parse_food.py` (output is `./RN50x4_RN_train.pkl`):
 ```
-python parse_food.py --clip_model_type RN50x4 --data_path <captions dir> --token_limit <max token length> --test_size <% of dataset>
+python parse_food.py --clip_model_type RN50x4 --data_path <CAPTION_DIR> --token_limit <MAX_TOKEN_LEN> --test_size <%_DATASET>
 ```
 Train with fine-tuning of GPT2 included:
 ```
@@ -50,6 +50,11 @@ python train.py --data ./data/ViT-B_32_train.pkl --out_dir ./food_train/ --weigh
 Train only the transformer mapping network (leaving GPT2 untouched):
 ```
 python train.py --only_prefix --data ./RN50x4_RN_train.pkl --out_dir ./model_checkpoints --mapping_type transformer  --num_layers 8 --prefix_length 40 --prefix_length_clip 40 --is_rn --weights_dir ./pretrained_model
+```
+
+Inference can be done with CLI:
+```
+python predict.py --beam --load_pt <CKPT_PATH> --img <IMG_PATH> --temp <TEMPERATURE>
 ```
 
 
