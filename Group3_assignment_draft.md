@@ -10,10 +10,11 @@ CLIP (Contrastive Language-Image Pre-Training) is a revolutionary neural network
 
 CLIP works by pre-training a large neural network on massive amounts of text and image data using contrastive learning. The goal of contrastive learning is to learn a representation that maximizes the similarity between matched image-text pairs and minimizes the similarity between unrelated image-text pairs.
 
-The CLIP model consists of a text and an image encoder. The function of the text encoder is to encode natural language descriptions, such as captions or textual prompts, into a numerical vector representation that captures the semantic content of the text. This is achieved using a transformer-based architecture (Vaswani et al., 2017). The function of the image encoder is to encode images into a numerical vector representation that captures their visual content. The image encoder can take the form of either a ResNet (He et al., 2016a) or a Vision Transformer (Dosovitskiy et al., 2020). As shown in Fig 1.1, the encoded textual and visual information forms a multimodal embedding space where their semantic and visual similarity can be compared and contrasted by the CLIP model. 
+The CLIP model consists of a text and an image encoder. The function of the text encoder is to encode natural language descriptions, such as captions or textual prompts, into a numerical vector representation that captures the semantic content of the text. This is achieved using a transformer-based architecture (Vaswani et al., 2017). The function of the image encoder is to encode images into a numerical vector representation that captures their visual content. The image encoder can take the form of either a ResNet (He et al., 2016a) or a Vision Transformer (Dosovitskiy et al., 2020). As shown in Fig 1 section (1), the encoded textual and visual information forms a multimodal embedding space where their semantic and visual similarity can be compared and contrasted by the CLIP model. 
 
 ![image](./Images/architecture.png)
-[<center> Fig 1</center>](https://towardsdatascience.com/simple-implementation-of-openai-clip-model-a-tutorial-ace6ff01d9f2)
+[*<center> Fig 1: Summary of CLIP approach. CLIP jointly trains an image encoder and a text encoder to predict the correct pairings of a batch of (image, text) training
+examples. At test time the learned text encoder synthesizes a zero-shot linear classifier by embedding the names or descriptions of the target dataset’s classes.</center>*](https://towardsdatascience.com/simple-implementation-of-openai-clip-model-a-tutorial-ace6ff01d9f2)
 
 ## Training
 
@@ -27,20 +28,23 @@ As a result of the training process, images and the captions that best describe 
 
 ![image](https://miro.medium.com/v2/resize:fit:1400/1*uyRvuUuTlYenXCQSVDgaJg.gif)
 
-[<center> Fig 2</center>](https://towardsdatascience.com/how-to-train-your-clip-45a451dcd303)
+[*<center> Fig 2: Put image-text pairs close in space by training process</center>*](https://towardsdatascience.com/how-to-train-your-clip-45a451dcd303)
 
 
 
 ## Inference
 
-During inference, CLIP takes in a set of labels, generates texts based on those labels, and then encodes those texts into embeddings using a text encoder. These text embeddings are then matched with the corresponding image embeddings to predict the most likely text description for the image, as shown in Fig.1.2. Figure 3 visualizes the predictions from 2 CLIP zero-shot classifiers.The predicted probability of the top 5 classes is shown along with the text used to represent the class. The correct answer is highlighted as green whereas the wrong answer is highlighted as orange.
+During inference, CLIP takes in a set of labels, generates texts based on those labels, and then encodes those texts into embeddings using a text encoder. These text embeddings are then matched with the corresponding image embeddings to predict the most likely text description for the image, as shown in Fig.1 section (2). Figure 3 visualizes the predictions from 2 CLIP zero-shot classifiers.The predicted probability of the top 5 classes is shown along with the text used to represent the class. The correct answer is highlighted as green whereas the wrong answer is highlighted as orange.
 
 
 ![image](./Images/inference.png)
-[<center> Fig 3</center>](https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf) 
+[*<center> Fig 3: Visualization of predictions from 2 CLIP zero-shot classifiers.  The predicted probability of the top 5 classes is shown along with the text used to represent the class. The ground truth label is colored green while an incorrect
+prediction is colored orange. </center>*](https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf) 
+
+Fig.4 shows the numpy-like pseudocode for the core of an implementation of CLIP:
 
 ![image](./Images/psudocode.png)
-[<center> Fig 4</center>](https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf)
+[*<center> Fig 4: Pseudocode for CLIP</center>*](https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf)
 
 ## Use Case Demo: CLIP Prefix Captioning.
 
@@ -103,6 +107,7 @@ python predict.py --beam --load_pt <CKPT_PATH> --img <IMG_PATH> --temp <TEMPERAT
 ### Model Architecture
 
 ![Model](Images/modelarchitecture.png)
+*<center> Fig 5: Model architecture</center>*
 
 Our best inference results were obtained by only training the ResNet based transformer while keeping CLIP and GPT2 frozen. 
 
