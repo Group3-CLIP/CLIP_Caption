@@ -12,8 +12,8 @@ CLIP works by pre-training a large neural network on massive amounts of text and
 
 The CLIP model consists of a text and an image encoder. The function of the text encoder is to encode natural language descriptions, such as captions or textual prompts, into a numerical vector representation that captures the semantic content of the text. This is achieved using a transformer-based architecture (Vaswani et al., 2017). The function of the image encoder is to encode images into a numerical vector representation that captures their visual content. The image encoder can take the form of either a ResNet (He et al., 2016a) or a Vision Transformer (Dosovitskiy et al., 2020). As shown in Fig 1.1, the encoded textual and visual information forms a multimodal embedding space where their semantic and visual similarity can be compared and contrasted by the CLIP model. 
 
-![image](./images/architecture.png)
-[<center> Fig:</center>](https://towardsdatascience.com/simple-implementation-of-openai-clip-model-a-tutorial-ace6ff01d9f2)
+![image](./Images/architecture.png)
+[<center> Fig 1</center>](https://towardsdatascience.com/simple-implementation-of-openai-clip-model-a-tutorial-ace6ff01d9f2)
 
 ## Training
 
@@ -27,7 +27,7 @@ As a result of the training process, images and the captions that best describe 
 
 ![image](https://miro.medium.com/v2/resize:fit:1400/1*uyRvuUuTlYenXCQSVDgaJg.gif)
 
-[<center> Fig:</center>](https://towardsdatascience.com/how-to-train-your-clip-45a451dcd303)
+[<center> Fig 2</center>](https://towardsdatascience.com/how-to-train-your-clip-45a451dcd303)
 
 
 
@@ -36,11 +36,11 @@ As a result of the training process, images and the captions that best describe 
 During inference, CLIP takes in a set of labels, generates texts based on those labels, and then encodes those texts into embeddings using a text encoder. These text embeddings are then matched with the corresponding image embeddings to predict the most likely text description for the image, as shown in Fig.1.2. Figure 3 visualizes the predictions from 2 CLIP zero-shot classifiers.The predicted probability of the top 5 classes is shown along with the text used to represent the class. The correct answer is highlighted as green whereas the wrong answer is highlighted as orange.
 
 
-![sampe image](./images/inference.png)
-[<center> Fig:</center>](https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf) 
+![sampe image](./Images/inference.png)
+[<center> Fig 3</center>](https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf) 
 
-![sampe image](./images/psudocode.png)
-[<center> Fig:</center>](https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf)
+![sampe image](./Images/psudocode.png)
+[<center> Fig 4</center>](https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf)
 
 ## Use Case Demo: CLIP Prefix Captioning.
 
@@ -123,8 +123,9 @@ CLIP has a wide range of possible use cases in various industries such as health
 CLIP can be used for image and text generation where users are able to generate images or text based on a given prompt. This can be useful in entertainment, where users can create personalized content, such as memes or captions. Here, we provide a brief guide to fine-tune an existing caption model (Mokady, Hertz, & Bermano, 2021) built upon CLIP. We will be using the [food dataset](https://www.kaggle.com/datasets/zeynaloy/food-related-pictures-dataset-with-captions) with captions from Kaggle.
 
 
-![sampe image](./images/wordcloud.png)
-<center> Fig: Word cloud for the captions </center>
+![sampe image](./Images/wordcloud.png)
+*<center> Fig 6: Word cloud for the captions </center>*
+
 
 
 ### Parsing & Preprocessing Training Images/Captions
