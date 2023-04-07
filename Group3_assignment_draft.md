@@ -36,10 +36,10 @@ As a result of the training process, images and the captions that best describe 
 During inference, CLIP takes in a set of labels, generates texts based on those labels, and then encodes those texts into embeddings using a text encoder. These text embeddings are then matched with the corresponding image embeddings to predict the most likely text description for the image, as shown in Fig.1.2. Figure 3 visualizes the predictions from 2 CLIP zero-shot classifiers.The predicted probability of the top 5 classes is shown along with the text used to represent the class. The correct answer is highlighted as green whereas the wrong answer is highlighted as orange.
 
 
-![sampe image](./Images/inference.png)
+![image](./Images/inference.png)
 [<center> Fig 3</center>](https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf) 
 
-![sampe image](./Images/psudocode.png)
+![image](./Images/psudocode.png)
 [<center> Fig 4</center>](https://cdn.openai.com/papers/Learning_Transferable_Visual_Models_From_Natural_Language_Supervision.pdf)
 
 ## Use Case Demo: CLIP Prefix Captioning.
@@ -123,7 +123,7 @@ CLIP has a wide range of possible use cases in various industries such as health
 CLIP can be used for image and text generation where users are able to generate images or text based on a given prompt. This can be useful in entertainment, where users can create personalized content, such as memes or captions. Here, we provide a brief guide to fine-tune an existing caption model (Mokady, Hertz, & Bermano, 2021) built upon CLIP. We will be using the [food dataset](https://www.kaggle.com/datasets/zeynaloy/food-related-pictures-dataset-with-captions) with captions from Kaggle.
 
 
-![sampe image](./Images/wordcloud.png)
+![image](./Images/wordcloud.png)
 *<center> Fig 6: Word cloud for the captions </center>*
 
 
@@ -160,7 +160,7 @@ python predict.py --beam --load_pt <CKPT_PATH> --img <IMG_PATH> --temp <TEMPERAT
 
 | Image | Pre-trained | With fine-tuning |
 |-------|-----------|-----------|
-| ![Red apple](./images/inf1.jpg) | A table topped with lots of  different types of fruits and vegetables | A healthy diet of fruits, vegetables, nuts, seeds, nuts, seeds, and whole grains. |
+| ![image](./Images/inf1.jpg) | A table topped with lots of  different types of fruits and vegetables | A healthy diet of fruits, vegetables, nuts, seeds, nuts, seeds, and whole grains. |
 
 As we can see in the example above, we are able to get more details after fine-tuning the pre-trained caption model that was built on top of CLIP. The commands are also available in [Git Gist](https://gist.github.com/bryanSwk/33cda345e654ae6a0c6b3e7d2094bafe) format.
 
