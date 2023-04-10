@@ -9,14 +9,14 @@ import argparse
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-def main(clip_model_type: str, data_path: str, token_limit: int, test_size: int):
+def main(clip_model_type: str, data_path: str, token_limit: int, train_size: int):
     #preprocessing
     df = pd.read_csv(data_path + 'Captions.csv')
     df.iloc[0] = df.iloc[0].astype(np.int64)
     df.iloc[1] = df.iloc[1].astype(str)
     df = df.rename(columns={df.columns[0]:'image_id', df.columns[1]:'caption'})
     df = df[df['caption'].map(len) < token_limit]
-    _, X_test = train_test_split(df, test_size=test_size, random_state=42)
+    _, X_test = train_test_split(df, test_size=train_size, random_state=42)
     data = X_test
 
     device = torch.device('cuda:0')
@@ -54,6 +54,6 @@ if __name__ == '__main__':
     parser.add_argument('--clip_model_type', default="ViT-B/32", choices=('RN50', 'RN101', 'RN50x4', 'ViT-B/32'))
     parser.add_argument('--data_path', default='./data')
     parser.add_argument('--token_limit', type=int, default=240)
-    parser.add_argument('--test_size', type=int, default=0.3)
+    parser.add_argument('--train_size', type=int, default=0.3)
     args = parser.parse_args()
-    exit(main(args.clip_model_type, args.data_path, args.token_limit, args.test_size))
+    exit(main(args.clip_model_type, args.data_path, args.token_limit, args.train_size))
