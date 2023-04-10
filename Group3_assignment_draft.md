@@ -132,44 +132,6 @@ CLIP can be used for image and text generation where users are able to generate 
 *<center> Fig 6: Word cloud for the captions </center>*
 
 
-
-### Parsing & Preprocessing Training Images/Captions
-
-First, we have to extract CLIP features using the encoder of a base model, ResNet 50x4 in this case. 
-
-
-```
-python parse_food.py --clip_model_type RN50x4 --data_path <CAPTION_DIR> --token_limit <MAX_TOKEN_LEN> --test_size <%_DATASET>
-```
-
-
-### Training
-
-Next, we can run our training script after initializing our model with pretrained weights.
-
-
-```
-python train.py --only_prefix --data ./RN50x4_RN_train.pkl --out_dir ./model_checkpoints --mapping_type transformer --num_layers 8 --prefix_length 40 --prefix_length_clip 40 --is_rn --weights_dir ./pretrained_model
-```
-
-
-### Inference
-
-Finally, inference can be performed on a test image. We recommend experimenting with the temperature parameter which we briefly touch on in the [Github repository](https://github.com/Group3-CLIP/CLIP_Caption).
-
-
-```
-python predict.py --beam --load_pt <CKPT_PATH> --img <IMG_PATH> --temp <TEMPERATURE>
-
-```
-
-| Image | Pre-trained | With fine-tuning |
-|-------|-----------|-----------|
-| ![image](./Images/inf1.jpg) | A table topped with lots of  different types of fruits and vegetables | A healthy diet of fruits, vegetables, nuts, seeds, nuts, seeds, and whole grains. |
-
-As we can see in the example above, we are able to get more details after fine-tuning the pre-trained caption model that was built on top of CLIP. The commands are also available in [Git Gist](https://gist.github.com/bryanSwk/33cda345e654ae6a0c6b3e7d2094bafe) format.
-
-
 ## Other Use Cases:
 
 - Remote sensing(satellite) image captioning: CLIP can be used to caption and classify satellite images in areas not limited to meteorology and weather forecasting, fishing, oceanography, agriculture, conservation, forestry, landscape analysis, geology, mapping, regional planning, environmental assessment, intelligence, warfare and education. 
