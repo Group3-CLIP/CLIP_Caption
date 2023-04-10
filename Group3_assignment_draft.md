@@ -86,7 +86,7 @@ conda activate clip_prefix_caption
 
 Extract CLIP features using `parse_food.py` (output is `./RN50x4_RN_train.pkl`):
 ```
-python parse_food.py --clip_model_type RN50x4 --data_path <CAPTION_DIR> --token_limit <MAX_TOKEN_LEN> --test_size <%_DATASET>
+python parse_food.py --clip_model_type RN50x4 --data_path <CAPTION_DIR> --token_limit <MAX_TOKEN_LEN> --train_size <%_DATASET>
 ```
 Train with fine-tuning of GPT2 included:
 ```
@@ -111,7 +111,7 @@ python predict.py --beam --load_pt <CKPT_PATH> --img <IMG_PATH> --temp <TEMPERAT
 
 Our best inference results were obtained by only training the ResNet based transformer while keeping CLIP and GPT2 frozen. 
 
-Our final checkpoint was trained on a subset `test_size = 0.3` of the [food dataset](https://www.kaggle.com/datasets/zeynaloy/food-related-pictures-dataset-with-captions) from Kaggle.
+Our final checkpoint was trained on a subset `train_size = 0.3` of the [food dataset](https://www.kaggle.com/datasets/zeynaloy/food-related-pictures-dataset-with-captions) from Kaggle.
 
 An important parameter to note at inference is the `Temperature`. Temperature scales the values of the logits from GPT2 before they enter the softmax and hence changes the probability distribution of the words generated in the captions. -- Varying `Temperature` can lead to significantly different results with lower temperatures typically associated with more deterministic outcomes.
 
