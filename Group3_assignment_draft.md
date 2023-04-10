@@ -119,7 +119,7 @@ An important parameter to note at inference is the `Temperature`. Temperature sc
 
 | `Temperature`= 1 | `Temperature`= 0.1|
 | ---|:---|
-| A healthy diet of fruits, vegetables, nuts, seeds, nuts, seeds, and whole grains.| A healthy eating diet with healthy foods and healthy fats. |
+| A healthy diet of fruits, vegetables, seeds, nuts, seeds, and whole grains.| A healthy eating diet with healthy foods and healthy fats. |
 
 To fine-tune the model for a specific task, the last layer of the text encoder can be replaced with a task-specific layer and the entire model trained using a smaller dataset. Alternatively, a secondary model architecture can be built upon CLIP that takes in its output as its input. This approach, known as transfer learning, allows the model to quickly adapt to new tasks and achieve state-of-the-art performance with minimal training data.
 
